@@ -7,10 +7,7 @@
   "routes": [
     { "src": "/api/([a-zA-Z0-9_-]+)", "dest": "dist/server/node-build.mjs" },
     { "src": "/(.*)", "dest": "dist/client/index.html" }
-  ],
-  
-  "rewrites": [
-    { "source": "/(.*)", "destination": "/index.html" }
   ]
 }
+
 
