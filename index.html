@@ -1,0 +1,35 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Hello world project</title>
+    <script>
+      (function(){
+        try{
+          // Use a custom FullStory namespace to avoid conflicts with host environment
+          var ns = 'SAHAYAK_FS';
+          window['_fs_namespace'] = ns;
+          if (typeof window[ns] === 'undefined') {
+            var noop=function(){};
+            window[ns] = {
+              identify: noop, setUserVars: noop, event: noop, anonymize: noop, consent: noop,
+              shutdown: noop, restart: noop, log: noop,
+              getSession: function(){ return { url: null }; },
+              getCurrentSessionURL: function(){ return null; },
+              clearUserCookie: noop,
+            };
+          }
+          // Back-compat: if any code references FS, point it to our namespace
+          if (typeof window['FS'] === 'undefined') window['FS'] = window[ns];
+        }catch(e){ /* ignore */ }
+      })();
+    </script>
+  </head>
+
+  <body>
+    <div id="root"></div>
+
+    <script type="module" src="/client/App.tsx"></script>
+  </body>
+</html>
